@@ -66,7 +66,40 @@
             @endcan
 
             
-            
+            {{-- Client Info module --}}
+            @can('manage_client_info')
+                <div class="menu-item has-sub {{ session('lsbm') == 'manage_client_info' ? 'expand' : '' }}">
+                    <a href="#" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+
+                        <span class="menu-text">Manage Client Info</span>
+
+                        <span class="menu-caret">
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+
+                    <div class="menu-submenu" style="{{ session('lsbsm') == 'manage_client_info' ? 'display: block;' : '' }}">
+
+                        <div class="menu-item {{ session('lsbsm') == 'client_list' ? 'active' : '' }}">
+                            <a href="{{route('admin.clientInfo.index')}}" class="menu-link">
+                                <span class="menu-text">Client List</span>
+                            </a>
+                        </div>
+                
+                        <div class="menu-item {{ session('lsbsm') == 'add_client' ? 'active' : '' }}">
+                            <a href="{{route('admin.clientInfo.create')}}" class="menu-link">
+                                <span class="menu-text">Add New Client</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            @endcan
+
 
             @can('manage_office')
                 <div class="menu-item has-sub {{ session('lsbm') == 'manage_office' ? 'expand' : '' }}">

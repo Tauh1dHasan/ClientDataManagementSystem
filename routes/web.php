@@ -19,6 +19,8 @@ use App\Http\Controllers\Backend\Admin\{
     OfficeCategoryController,
     AppointmentController,
     NotificationController,
+    ClientInfoController,
+    ClientDataController,
 };
 
 /*
@@ -80,6 +82,24 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::get('/editProfile/{username}', [UserController::class, 'editProfile'])->name('editProfile');
         Route::post('/updateProfile/{user}', [UserController::class, 'updateProfile'])->name('updateProfile');
         Route::post('/updatePassword/{user}', [UserController::class, 'updatePassword'])->name('updatePassword');
+    });
+
+
+    // Manage Client Info Routes
+    Route::group(['prefix' => '/client-info', 'as' => 'clientInfo.'], function() {
+        Route::get('/', [ClientInfoController::class, 'index'])->name('index');
+        Route::get('/create', [ClientInfoController::class, 'create'])->name('create');
+        Route::post('/store', [ClientInfoController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [ClientInfoController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [ClientInfoController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [ClientInfoController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [ClientInfoController::class, 'destroy'])->name('delete');
+    });
+
+    // Manage Client Data Routes
+    Route::group(['prefix' => '/client-data', 'as' => 'clientData.'], function() {
+        Route::post('/store', [ClientDataController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [ClientDataController::class, 'destroy'])->name('delete');
     });
 
 
