@@ -1,6 +1,13 @@
 @extends('backend.layouts.app')
 @section('content')
 <div id="content" class="app-content">
+    <style>
+        .img-thumbnail {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 4px;
+}
+    </style>
     @include('alerts.alerts')
     <div class="d-flex align-items-center mb-3">
         <div>
@@ -57,7 +64,7 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">NID Number:</label>
+                            <label class="form-label">CF/NID Number:</label>
                             <input type="text" class="form-control" value="{{$clientInfo->nid ?? 'N/A'}}" disabled />
                         </div>
                     </div>
@@ -90,8 +97,10 @@
                 <table class="table table-separate table-head-custom table-checkable dataTable">
                     <thead class="table-dark">
                         <tr>
-                            <th class="text-center">No</th>
+                            <th class="text-center">SN</th>
+                            <th class="text-center">Preview</th>
                             <th>Document Name</th>
+                            <th>Created At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -103,12 +112,70 @@
                             @endphp
                             @foreach ($clientDatas as $clientData)
                             <tr>
-                                <td>{{$i}}</td>
-                                <td>{{ucfirst($clientData->name)}}</td>
+                                <td class="text-center">{{$i}}</td>
+                                
+                                
+
+
+
+
+
+
+
+
+                                <td>
+                                    @php
+                                        $fileExtension = strtolower(pathinfo($clientData->name, PATHINFO_EXTENSION));
+                                    @endphp
+                                
+                                    @if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif']))
+                                        <!-- Display Image Preview -->
+                                        <img src="{{ asset('storage/clientData/' . $clientData->name) }}" alt="Image Preview" class="img-thumbnail" style="width: 100px; height: auto;">
+                                    @elseif ($fileExtension === 'pdf')
+                                        <!-- Display PDF Preview -->
+                                        <a href="{{ asset('storage/clientData/' . $clientData->name) }}" target="_blank">
+                                            <i class="fa fa-file-pdf text-danger" style="font-size: 24px;"></i>
+                                            View PDF
+                                        </a>
+                                    @elseif (in_array($fileExtension, ['doc', 'docx']))
+                                        <!-- Display Word Icon -->
+                                        <a href="{{ asset('storage/clientData/' . $clientData->name) }}" target="_blank">
+                                            <i class="fa fa-file-word text-primary" style="font-size: 24px;"></i>
+                                            View Document
+                                        </a>
+                                    @else
+                                        <!-- Default Preview for Unknown Files -->
+                                        <i class="fa fa-file text-muted" style="font-size: 24px;"></i>
+                                        No Preview
+                                    @endif
+                                </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <td>{{ucfirst($clientData->display_name)}}</td>
+                                <td>{{date('d/m/Y', strtotime($clientData->created_at))}}</td>
                                 <td>
                                     <a href="{{ asset('storage/clientData/' . $clientData->name) }}" class="btn btn-outline-light" title="Download" download>
                                         <i class="fa fa-download"></i>
                                     </a>
+                                    <button data-toggle="modal" data-target="#rename{{$clientData->id}}" title="Rename" class="btn btn-outline-theme">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
                                     {{-- <a href="{{route('admin.clientInfo.edit', $clientInfo->id)}}" class="btn btn-outline-warning" title="Edit">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a> --}}
@@ -120,6 +187,42 @@
                             @php
                                 $i++;
                             @endphp
+
+
+                                {{-- File Rename Modal --}}
+
+                                <div id="rename{{$clientData->id}}" class="modal fade" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h5 class="modal-title">Rename File {{$clientData->id}}
+                                                    <span class="d-block text-muted font-size-sm"></span>
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="fas fa-close"></i>
+                                                </button>
+                                            </div>
+                                            <form class="form" action="{{ route('admin.clientData.rename') }}" method="post" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    @csrf
+                                                    <input type="hidden" name="client_Data_id" value="{{$clientData->id}}">
+                                                    <div class="col-md-12 mb-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="display_name">Write New Name </label>
+                                                            <input class="form-control" type="text" id="display_name" name="display_name"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                             @endforeach
                         @else
                             <tr class="odd"><td valign="top" colspan="100%" class="dataTables_empty text-center">No matching records found</td></tr>
@@ -140,37 +243,39 @@
         
     </div>
 
-{{-- Add new documents modal --}}
+        {{-- Add new documents modal --}}
 
-<div id="addDocuments" class="modal fade" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header py-5">
-                <h5 class="modal-title">Add Documents
-                    <span class="d-block text-muted font-size-sm"></span>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="fas fa-close"></i>
-                </button>
-            </div>
-            <form class="form" action="{{ route('admin.clientData.store') }}" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    @csrf
-                    <input type="hidden" name="client_info_id" value="{{$clientInfo->id}}">
-                    <div class="col-md-12 mb-2">
-                        <div class="form-group">
-                            <label class="form-label" for="documents">Attach Documents: </label>
-                            <input class="form-control" type="file" id="documents" name="documents[]" multiple/>
-                        </div>
+        <div id="addDocuments" class="modal fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header py-5">
+                        <h5 class="modal-title">Add Documents
+                            <span class="d-block text-muted font-size-sm"></span>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="fas fa-close"></i>
+                        </button>
                     </div>
+                    <form class="form" action="{{ route('admin.clientData.store') }}" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="client_info_id" value="{{$clientInfo->id}}">
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="documents">Attach Documents: </label>
+                                    <input class="form-control" type="file" id="documents" name="documents[]" multiple/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">Upload</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit">Upload</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
+
+        
 
     @endsection
     @push('script')

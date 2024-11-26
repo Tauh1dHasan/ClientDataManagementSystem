@@ -95,6 +95,7 @@ class ClientInfoController extends Controller
                 $randomFileName = 'clientData' . date('Y_m_d_his') . '_' . rand(10000000, 99999999) . '.' . $extension;
                 Storage::disk('public')->put('clientData/' . $randomFileName, File::get($document));
                 $clientData->name = $randomFileName;
+                $clientData->display_name = $randomFileName;
                 $clientData->status = 1;
                 $clientData->created_by = $user->id;
                 $clientData->save();

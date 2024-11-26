@@ -6,7 +6,7 @@
 
             <div class="col-xl-3 col-lg-6">
                 <div class="card mb-3">
-                    <a href="{{route('admin.visitor.index')}}" style="text-decoration: none">
+                    <a href="{{route('admin.clientInfo.index')}}" style="text-decoration: none">
                         <div class="card-body">
                             <div class="d-flex fw-bold mb-3">
                                 <span class="flex-grow-1 db-card-title">Listed Clients</span>
@@ -35,7 +35,7 @@
 
             <div class="col-xl-3 col-lg-6">
                 <div class="card mb-3">
-                    <a href="{{route('admin.visitor.index')}}" style="text-decoration: none">
+                    <a href="{{route('admin.clientInfo.index')}}" style="text-decoration: none">
                         <div class="card-body">
                             <div class="d-flex fw-bold mb-3">
                                 <span class="flex-grow-1 db-card-title">Listed Client Data Count</span>

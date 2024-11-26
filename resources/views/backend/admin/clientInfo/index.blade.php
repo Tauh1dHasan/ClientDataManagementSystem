@@ -58,12 +58,12 @@
                     <table class="table table-separate table-head-custom table-checkable dataTable">
                         <thead class="table-dark">
                             <tr>
-                                <th class="text-center">No</th>
+                                <th class="text-center">SN</th>
                                 <th class="text-center">Photo</th>
                                 <th>Client Name</th>
                                 <th class="text-center">Mobile</th>
                                 <th>Email</th>
-                                <th>NID</th>
+                                <th class="text-center">CF/NID Number</th>
                                 <th>Address</th>
                                 <th>Note</th>
                                 <th>Actions</th>
@@ -76,7 +76,7 @@
                                 @endphp
                                 @foreach ($clientInfos as $clientInfo)
                                 <tr>
-                                    <td>{{$i}}</td>
+                                    <td class="text-center">{{$i}}</td>
                                     <td class="text-center"> 
                                         @if ($clientInfo->photo)
                                             <img src="{{ asset('storage/clientImages/' . $clientInfo->photo) }}" alt="Photo" style="max-width: 80px;">
@@ -87,7 +87,7 @@
                                     <td>{{ucfirst($clientInfo->name)}}</td>
                                     <td align="middle">{{$clientInfo->mobile ?? 'N/A' }}</td>
                                     <td>{{$clientInfo->email ?? 'N/A' }}</td>
-                                    <td>{{$clientInfo->nid ?? 'N/A'}}</td>
+                                    <td class="text-center">{{$clientInfo->nid ?? 'N/A'}}</td>
                                     <td>{{$clientInfo->address ?? 'N/A'}}</td>
                                     <td>{{$clientInfo->notes ?? 'N/A'}}</td>
                                     
@@ -151,7 +151,7 @@
                 confirmButtonText: url,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire('Visitor Deleted Successfully!', '', 'success')
+                    Swal.fire('Client Deleted Successfully!', '', 'success')
                 } else if (result.dismiss === "cancel") {
                     Swal.fire('Canceled', '', 'error')
                 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('client_info_id');
             $table->string('name');
+            $table->string('display_name');
             $table->integer('status')->nullabe()->comment('1=active, 2=block');
             $table->integer('created_by')->nullabe();
             $table->integer('updated_by')->nullabe();

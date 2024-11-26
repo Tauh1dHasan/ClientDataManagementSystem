@@ -49,6 +49,7 @@ class ClientDataController extends Controller
                 $randomFileName = 'clientData' . date('Y_m_d_his') . '_' . rand(10000000, 99999999) . '.' . $extension;
                 Storage::disk('public')->put('clientData/' . $randomFileName, File::get($document));
                 $clientData->name = $randomFileName;
+                $clientData->display_name = $randomFileName;
                 $clientData->status = 1;
                 $clientData->created_by = $user->id;
                 $clientData->save();
@@ -104,5 +105,14 @@ class ClientDataController extends Controller
             return redirect()->back()->with('error', 'Client data not found.');
         }
 
+    }
+
+    public function rename(Request $request)
+    {
+        $client_Data_id = $request->client_Data_id;
+        $clientData = ClientData::find($client_Data_id);
+        $clientData->display_name = $request->display_name;
+        $clientData->save();
+        return redirect()->back();
     }
 }
