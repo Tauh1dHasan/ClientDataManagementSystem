@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 26, 2024 at 06:13 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Host: localhost:3306
+-- Generation Time: Nov 26, 2024 at 11:35 PM
+-- Server version: 10.6.17-MariaDB
+-- PHP Version: 8.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `client_data_management`
+-- Database: `rumiveni_cdms`
 --
 
 -- --------------------------------------------------------
@@ -31,21 +31,21 @@ CREATE TABLE `appointments` (
   `id` int(11) NOT NULL,
   `host_user_id` int(11) DEFAULT NULL,
   `visitor_user_id` int(11) DEFAULT NULL,
-  `visitor_organization` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visitor_designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `appointment_purpose` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `purpose_describe` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `appointment_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `appointment_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `visitor_organization` varchar(255) DEFAULT NULL,
+  `visitor_designation` varchar(255) DEFAULT NULL,
+  `appointment_purpose` varchar(255) DEFAULT NULL,
+  `purpose_describe` longtext DEFAULT NULL,
+  `appointment_date` varchar(255) DEFAULT NULL,
+  `appointment_time` varchar(255) DEFAULT NULL,
   `total_attendees_no` int(11) DEFAULT NULL,
-  `reschedule_reason` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reschedule_reason` longtext DEFAULT NULL,
   `canceled_by` int(11) DEFAULT NULL,
-  `cancel_reason` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cancel_reason` longtext DEFAULT NULL,
   `appointment_status` int(11) DEFAULT NULL COMMENT '0=pending, 1=approved, 2=declined, 3=re-scheduled, 4=ongoing, 5=complete\r\n',
   `departure_time` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `visitor_photo` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `card_number` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `visitor_photo` mediumtext DEFAULT NULL,
+  `card_number` text DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
@@ -76,12 +76,12 @@ INSERT INTO `appointments` (`id`, `host_user_id`, `visitor_user_id`, `visitor_or
 
 CREATE TABLE `client_data` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `client_info_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL COMMENT '1=active, 2=block',
-  `created_by` int(11) NOT NULL,
-  `updated_by` int(11) NOT NULL,
+  `client_info_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `display_name` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL COMMENT '1=active, 2=block',
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -91,11 +91,12 @@ CREATE TABLE `client_data` (
 --
 
 INSERT INTO `client_data` (`id`, `client_info_id`, `name`, `display_name`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(3, 1, 'clientData2024_11_23_061815_83887672.png', 'First One', 1, 1, 0, '2024-11-23 12:18:15', '2024-11-26 10:57:00'),
+(3, 1, 'clientData2024_11_23_061815_83887672.png', 'RURUR', 1, 1, 0, '2024-11-23 12:18:15', '2024-11-26 11:29:44'),
 (4, 1, 'clientData2024_11_23_061815_88759148.png', 'file display name one', 1, 1, 0, '2024-11-23 12:18:15', '2024-11-23 12:18:15'),
 (5, 1, 'clientData2024_11_23_061815_62893002.png', 'Thirt One', 1, 1, 0, '2024-11-23 12:18:15', '2024-11-26 10:57:11'),
-(6, 1, 'clientData2024_11_26_050953_41920598.pdf', 'clientData2024_11_26_050953_41920598.pdf', 1, 208, 0, '2024-11-26 11:09:54', '2024-11-26 11:09:54'),
-(7, 1, 'clientData2024_11_26_051159_26852148.doc', 'clientData2024_11_26_051159_26852148.doc', 1, 208, 0, '2024-11-26 11:11:59', '2024-11-26 11:11:59');
+(6, 1, 'clientData2024_11_26_050953_41920598.pdf', 'NID card', 1, 208, 0, '2024-11-26 11:09:54', '2024-11-26 11:26:06'),
+(7, 1, 'clientData2024_11_26_051159_26852148.doc', 'clientData2024_11_26_051159_26852148.doc', 1, 208, 0, '2024-11-26 11:11:59', '2024-11-26 11:11:59'),
+(8, 2, 'clientData2024_11_26_053204_71002735.jpg', 'clientData2024_11_26_053204_71002735.jpg', 1, 208, 0, '2024-11-26 11:32:04', '2024-11-26 11:32:04');
 
 -- --------------------------------------------------------
 
@@ -105,16 +106,16 @@ INSERT INTO `client_data` (`id`, `client_info_id`, `name`, `display_name`, `stat
 
 CREATE TABLE `client_infos` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL COMMENT '1=active, 2=block',
-  `created_by` int(11) NOT NULL,
-  `updated_by` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `nid` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL COMMENT '1=active, 2=block',
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -124,7 +125,8 @@ CREATE TABLE `client_infos` (
 --
 
 INSERT INTO `client_infos` (`id`, `name`, `photo`, `email`, `mobile`, `nid`, `address`, `notes`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Genevieve Mcdanielasdfsadf', 'clientImages2024_11_23_051611_65187600.png', 'mymefe@mailinator.com', '2351541651561', '684', 'Nobis hic ea sed ips', 'Facilis itaque tenet', 1, 1, 1, '2024-11-23 11:16:11', '2024-11-23 12:27:41');
+(1, 'Genevieve Mcdanielasdfsadf', 'clientImages2024_11_23_051611_65187600.png', 'mymefe@mailinator.com', '2351541651561', '684', 'Nobis hic ea sed ips', 'Facilis itaque tenet', 1, 1, 1, '2024-11-23 11:16:11', '2024-11-23 12:27:41'),
+(2, 'Ma Ruman', 'clientImages2024_11_26_053204_34957491.jpg', 'rumivenice@gmail.com', '3297645287', '1111', 'via castello', 'NOTE', 1, 208, 0, '2024-11-26 11:32:04', '2024-11-26 11:32:04');
 
 -- --------------------------------------------------------
 
@@ -134,7 +136,7 @@ INSERT INTO `client_infos` (`id`, `name`, `photo`, `email`, `mobile`, `nid`, `ad
 
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL COMMENT '0=inactive 1=active',
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -160,8 +162,8 @@ CREATE TABLE `designations` (
   `division_id` int(11) DEFAULT NULL,
   `office_id` int(11) DEFAULT NULL,
   `department_id` int(11) DEFAULT NULL,
-  `name_bn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_bn` varchar(255) DEFAULT NULL,
+  `name_en` varchar(255) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -208,11 +210,11 @@ INSERT INTO `designations` (`id`, `wing_id`, `division_id`, `office_id`, `depart
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -224,7 +226,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -251,9 +253,9 @@ CREATE TABLE `notifications` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `reference_id` int(11) DEFAULT NULL COMMENT 'related model id',
-  `model` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `route_name` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model` text DEFAULT NULL,
+  `route_name` mediumtext DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `office_id` int(11) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
@@ -272,7 +274,7 @@ CREATE TABLE `notifications` (
 
 CREATE TABLE `offices` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -295,7 +297,7 @@ INSERT INTO `offices` (`id`, `name`, `status`, `created_by`, `updated_by`, `crea
 
 CREATE TABLE `office_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_en` text DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL COMMENT '0: inactive, 1: active, 2: delete',
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -317,8 +319,8 @@ INSERT INTO `office_categories` (`id`, `name_en`, `status`, `created_by`, `updat
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -329,8 +331,8 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -342,8 +344,8 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_bn` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_en` text DEFAULT NULL,
+  `name_bn` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -423,11 +425,11 @@ INSERT INTO `permissions` (`id`, `name_en`, `name_bn`, `status`, `created_by`, `
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -443,9 +445,9 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `access_all` tinyint(4) DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_bn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_bn` varchar(255) DEFAULT NULL,
+  `display_name` varchar(255) DEFAULT NULL,
   `sl` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=active, 2=disabled',
   `created_by` int(11) DEFAULT NULL,
@@ -642,19 +644,19 @@ INSERT INTO `role_permissions` (`id`, `user_id`, `permission_id`, `role_id`, `cr
 
 CREATE TABLE `settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sub_title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo` varchar(251) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alt_phone` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alt_mobile` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alt_email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `copyright` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` text DEFAULT NULL,
+  `sub_title` text DEFAULT NULL,
+  `logo` varchar(251) DEFAULT NULL,
+  `address` longtext DEFAULT NULL,
+  `phone` text DEFAULT NULL,
+  `mobile` text DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `alt_phone` text DEFAULT NULL,
+  `alt_mobile` text DEFAULT NULL,
+  `alt_email` text DEFAULT NULL,
+  `copyright` text DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -674,16 +676,16 @@ INSERT INTO `settings` (`id`, `title`, `sub_title`, `logo`, `address`, `phone`, 
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_bn` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_bn` text DEFAULT NULL,
+  `name_en` text DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
   `user_type` int(11) NOT NULL COMMENT '1=super-admin, 2=admin, 3=employee, 4=visitor',
   `role_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL COMMENT '0=Blocked,\r\n 1=active, 2=disable',
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -716,15 +718,15 @@ CREATE TABLE `user_addresses` (
   `present_division_id` int(11) DEFAULT NULL,
   `present_district_id` int(11) DEFAULT NULL,
   `present_upazila_id` int(11) DEFAULT NULL,
-  `present_post_office` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `present_post_code` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `present_post_office` text DEFAULT NULL,
+  `present_post_code` text DEFAULT NULL,
   `permanent_division_id` int(11) DEFAULT NULL,
   `permanent_district_id` int(11) DEFAULT NULL,
   `permanent_upazila_id` int(11) DEFAULT NULL,
-  `permanent_post_office` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `permanent_post_code` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `present_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'village or road no',
-  `permanent_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'village or road no',
+  `permanent_post_office` text DEFAULT NULL,
+  `permanent_post_code` text DEFAULT NULL,
+  `present_address` mediumtext DEFAULT NULL COMMENT 'village or road no',
+  `permanent_address` mediumtext DEFAULT NULL COMMENT 'village or road no',
   `same_as_present_address` smallint(6) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -754,29 +756,29 @@ CREATE TABLE `user_infos` (
   `user_id` int(11) DEFAULT NULL,
   `department_id` int(11) DEFAULT NULL,
   `designation_id` int(11) DEFAULT NULL,
-  `address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` mediumtext DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `office_id` int(11) DEFAULT NULL,
-  `gender` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dob` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `employee_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nid_no` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` varchar(100) DEFAULT NULL,
+  `dob` varchar(100) DEFAULT NULL,
+  `employee_id` varchar(100) DEFAULT NULL,
+  `nid_no` varchar(100) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
-  `passport_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `driving_license_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `religion` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `passport_no` varchar(255) DEFAULT NULL,
+  `driving_license_no` varchar(255) DEFAULT NULL,
+  `religion` mediumtext DEFAULT NULL,
   `availablity` int(11) DEFAULT 1 COMMENT '0=unavailable, 1=available',
-  `visitor_organization` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visitor_designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `f_name_bn` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `f_name_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `m_name_bn` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `m_name_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birth_certificate_no` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `visitor_organization` varchar(255) DEFAULT NULL,
+  `visitor_designation` varchar(255) DEFAULT NULL,
+  `f_name_bn` text DEFAULT NULL,
+  `f_name_en` text DEFAULT NULL,
+  `m_name_bn` text DEFAULT NULL,
+  `m_name_en` text DEFAULT NULL,
+  `birth_certificate_no` text DEFAULT NULL,
   `basic_salary` decimal(8,2) DEFAULT NULL,
-  `marital_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marital_status` text DEFAULT NULL,
   `quota` int(11) DEFAULT NULL,
-  `signature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `signature` varchar(255) DEFAULT NULL,
   `is_retire` int(11) DEFAULT NULL COMMENT '0=not-retire, 1=retired',
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -944,13 +946,13 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `client_data`
 --
 ALTER TABLE `client_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `client_infos`
 --
 ALTER TABLE `client_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `departments`
