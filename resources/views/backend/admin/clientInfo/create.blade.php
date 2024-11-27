@@ -48,7 +48,14 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label for="mobile" class="form-label">Mobile Number:</label>
-                            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Valid Mobile Number" value="{{old('mobile')}}" minlength="11" maxlength="14" />
+                            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Valid Mobile Number" value="{{old('mobile')}}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label for="date_of_birth" class="form-label">Date of Birth:</label>
+                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{old('date_of_birth')}}"/>
                         </div>
                     </div>
 

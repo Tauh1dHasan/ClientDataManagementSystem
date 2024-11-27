@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('photo')->nullabe();
             $table->string('email')->nullabe();
             $table->string('mobile')->nullabe();
+            $table->string('date_of_birth')->nullabe();
             $table->string('nid')->nullabe();
             $table->string('address')->nullabe();
             $table->string('notes')->nullabe();

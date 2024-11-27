@@ -64,6 +64,14 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
+                            <label class="form-label">Date of Birth:</label>
+                            <input type="text" class="form-control" value="{{ date('d/m/Y', strtotime($clientInfo->date_of_birth)) }}" disabled />
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
                             <label class="form-label">CF/NID Number:</label>
                             <input type="text" class="form-control" value="{{$clientInfo->nid ?? 'N/A'}}" disabled />
                         </div>

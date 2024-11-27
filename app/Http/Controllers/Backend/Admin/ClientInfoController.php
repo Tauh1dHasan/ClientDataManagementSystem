@@ -69,6 +69,7 @@ class ClientInfoController extends Controller
         $clientInfo->name = $request->name;
         $clientInfo->email = $request->email;
         $clientInfo->mobile = $request->mobile;
+        $clientInfo->date_of_birth = $request->date_of_birth;
         $clientInfo->nid = $request->nid;
         $clientInfo->address = $request->address;
         $clientInfo->notes = $request->notes;
@@ -142,6 +143,9 @@ class ClientInfoController extends Controller
         $clientInfo->name = $request->name;
         $clientInfo->email = $request->email;
         $clientInfo->mobile = $request->mobile;
+        if ($request->date_of_birth != NULL) {
+            $clientInfo->date_of_birth = $request->date_of_birth;
+        }
         $clientInfo->nid = $request->nid;
         $clientInfo->address = $request->address;
         $clientInfo->notes = $request->notes;
