@@ -66,6 +66,7 @@
                                 <th class="text-center">CF/NID Number</th>
                                 <th>Address</th>
                                 <th>Note</th>
+                                <th class="text-center">File Count</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -90,6 +91,7 @@
                                     <td class="text-center">{{$clientInfo->nid ?? 'N/A'}}</td>
                                     <td>{{$clientInfo->address ?? 'N/A'}}</td>
                                     <td>{{$clientInfo->notes ?? 'N/A'}}</td>
+                                    <td class="text-center">{{$clientInfo->client_data_count ?? 'N/A'}}</td>
                                     
                                     <td>
 

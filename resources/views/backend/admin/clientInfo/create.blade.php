@@ -61,7 +61,7 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label for="nid" class="form-label">NID Number:</label>
+                            <label for="nid" class="form-label">CF/NID Number:</label>
                             <input type="text" class="form-control" id="nid" name="nid" placeholder="Enter Valid NID Number" value="{{old('nid')}}" />
                         </div>
                     </div>

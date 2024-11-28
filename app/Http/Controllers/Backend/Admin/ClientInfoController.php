@@ -28,12 +28,13 @@ class ClientInfoController extends Controller
             menuSubmenu('manage_client_info', 'client_list');
 
             if(($request->name) && ($request->name != '')){
-                $clientInfos = ClientInfo::where('name', 'LIKE', '%'.$request->name.'%')
+                $clientInfos = ClientInfo::withCount('clientData')
+                                ->where('name', 'LIKE', '%'.$request->name.'%')
                                 ->orWhere('email', 'LIKE', '%'.$request->name.'%')
                                 ->orWhere('mobile', 'LIKE', '%'.$request->name.'%')
                                 ->orWhere('nid', 'LIKE', '%'.$request->name.'%')->latest()->paginate(20);
             }else{
-                $clientInfos = ClientInfo::latest()->paginate(20);
+                $clientInfos = ClientInfo::withCount('clientData')->latest()->paginate(20);
             }
 
             return view('backend.admin.clientInfo.index', compact('clientInfos'));

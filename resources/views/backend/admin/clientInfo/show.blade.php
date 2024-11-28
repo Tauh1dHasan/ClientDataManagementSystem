@@ -108,6 +108,7 @@
                             <th class="text-center">SN</th>
                             <th class="text-center">Preview</th>
                             <th>Document Name</th>
+                            <th>Note</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -121,15 +122,6 @@
                             @foreach ($clientDatas as $clientData)
                             <tr>
                                 <td class="text-center">{{$i}}</td>
-                                
-                                
-
-
-
-
-
-
-
 
                                 <td>
                                     @php
@@ -158,43 +150,68 @@
                                     @endif
                                 </td>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <td>{{ucfirst($clientData->display_name)}}</td>
+                                <td>{{ucfirst($clientData->note)}}</td>
                                 <td>{{date('d/m/Y', strtotime($clientData->created_at))}}</td>
                                 <td>
+
                                     <a href="{{ asset('storage/clientData/' . $clientData->name) }}" class="btn btn-outline-light" title="Download" download>
                                         <i class="fa fa-download"></i>
                                     </a>
+
+                                    <button data-toggle="modal" data-target="#note{{$clientData->id}}" title="Note" class="btn btn-outline-warning">
+                                        <i class="fa-regular fa-clipboard"></i>
+                                    </button>
+
                                     <button data-toggle="modal" data-target="#rename{{$clientData->id}}" title="Rename" class="btn btn-outline-theme">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
-                                    {{-- <a href="{{route('admin.clientInfo.edit', $clientInfo->id)}}" class="btn btn-outline-warning" title="Edit">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </a> --}}
+
                                     <button class="btn btn-outline-danger delete" title="Delete" data-id="{{ $clientData->id }}">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
+
                                 </td>
                             </tr>
                             @php
                                 $i++;
                             @endphp
+
+
+
+                                {{-- Add Note Modal --}}
+
+                                <div id="note{{$clientData->id}}" class="modal fade" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header py-5">
+                                                <h5 class="modal-title">Keep Note
+                                                    <span class="d-block text-muted font-size-sm"></span>
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="fas fa-close"></i>
+                                                </button>
+                                            </div>
+                                            <form class="form" action="{{ route('admin.clientData.note') }}" method="post" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    @csrf
+                                                    <input type="hidden" name="client_Data_id" value="{{$clientData->id}}">
+                                                    <div class="col-md-12 mb-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="note">Write Note </label>
+                                                            <textarea class="form-control" name="note" cols="10" rows="5" placeholder="Write Down Notes for the Document">{{$clientData->note}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="submit">Keep</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
 
                                 {{-- File Rename Modal --}}
@@ -228,7 +245,6 @@
                                         </div>
                                     </div>
                                 </div>
-
 
 
                             @endforeach

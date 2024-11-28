@@ -115,4 +115,13 @@ class ClientDataController extends Controller
         $clientData->save();
         return redirect()->back();
     }
+
+    public function note(Request $request)
+    {
+        $client_Data_id = $request->client_Data_id;
+        $clientData = ClientData::find($client_Data_id);
+        $clientData->note = $request->note;
+        $clientData->save();
+        return redirect()->back();
+    }
 }

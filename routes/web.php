@@ -101,6 +101,7 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::post('/store', [ClientDataController::class, 'store'])->name('store');
         Route::get('/delete/{id}', [ClientDataController::class, 'destroy'])->name('delete');
         Route::post('/rename', [ClientDataController::class, 'rename'])->name('rename');
+        Route::post('/note', [ClientDataController::class, 'note'])->name('note');
     });
 
 
