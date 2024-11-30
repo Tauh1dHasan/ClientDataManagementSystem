@@ -26,8 +26,15 @@
                     
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label for="name" class="form-label">Client Name: <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Full Name of Client" value="{{old('name')}}" required />
+                            <label for="first_name" class="form-label">First Name: <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name of Client" value="{{old('first_name')}}" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label for="last_name" class="form-label">Last Name: <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name of Client" value="{{old('last_name')}}" required />
                         </div>
                     </div>
 
@@ -80,10 +87,17 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 mb-2">
+                    {{-- <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label" for="documents">Attach Documents: </label>
                             <input class="form-control" type="file" id="documents" name="documents[]" multiple/>
+                        </div>
+                    </div> --}}
+
+                    <div class="col-md-12 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Attach Documents:</label>
+                            <div id="document-dropzone" class="dropzone"></div>
                         </div>
                     </div>
 
@@ -105,3 +119,31 @@
         
     </div>
     @endsection
+
+    @push('script')
+    <script>
+        Dropzone.autoDiscover = false;
+
+        const documentDropzone = new Dropzone("#document-dropzone", {
+            url: "{{ route('admin.clientInfo.upload_temp_document') }}", // Route for temporary upload
+            paramName: "file",
+            maxFilesize: 35, // 5 MB
+            acceptedFiles: ".png,.jpg,.jpeg,.pdf,.docx,.doc,.xls,.xlsx",
+            addRemoveLinks: true,
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            },
+            success: function (file, response) {
+                // Store the temporary file path in a hidden input field
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "temp_documents[]";
+                input.value = response.path;
+                document.getElementById("kt_form_1").appendChild(input);
+            },
+            error: function (file, response) {
+                console.error("File upload error:", response);
+            },
+        });
+    </script>
+    @endpush

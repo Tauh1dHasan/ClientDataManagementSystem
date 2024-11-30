@@ -85,7 +85,7 @@
                                             <img src="{{ asset('blank.png') }}" alt="Photo" style="max-width: 80px;"> 
                                         @endif
                                     </td>
-                                    <td>{{ucfirst($clientInfo->name)}}</td>
+                                    <td>{{ucfirst($clientInfo->first_name)}} {{ucfirst($clientInfo->last_name)}}</td>
                                     <td align="middle">{{$clientInfo->mobile ?? 'N/A' }}</td>
                                     <td>{{$clientInfo->email ?? 'N/A' }}</td>
                                     <td class="text-center">{{$clientInfo->nid ?? 'N/A'}}</td>
@@ -105,9 +105,9 @@
                                         </a>
                                     
                                     
-                                        {{-- <button class="btn btn-outline-danger delete" title="Delete" data-id="{{ $clientInfo->id }}">
+                                        <button class="btn btn-outline-danger delete" title="Delete" data-id="{{ $clientInfo->id }}">
                                             <i class="fa-solid fa-trash"></i>
-                                        </button> --}}
+                                        </button>
                                         
                                     </td>
                                 </tr>

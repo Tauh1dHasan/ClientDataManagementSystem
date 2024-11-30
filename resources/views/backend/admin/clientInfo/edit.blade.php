@@ -26,8 +26,15 @@
                     
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label for="name" class="form-label">Client Name: <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Full Name of Client" value="{{$clientInfo->name}}" required />
+                            <label for="first_name" class="form-label">First Name: <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name of Client" value="{{$clientInfo->first_name}}" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label for="last_name" class="form-label">Last Name: <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name of Client" value="{{$clientInfo->last_name}}" required />
                         </div>
                     </div>
 

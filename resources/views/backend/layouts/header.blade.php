@@ -9,6 +9,13 @@
     <link href="{{asset('backend-assets/css/vendor.min.css')}}" rel="stylesheet">
     <link href="{{asset('backend-assets/css/app.min.css')}}" rel="stylesheet">
     <link href="{{asset('backend-assets/plugins/jvectormap-next/jquery-jvectormap.css')}}" rel="stylesheet">
+
+    <!-- Dropzone.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" rel="stylesheet">
+
+
+
+
     <style>
       .bg-soft-success{background-color:rgba(26,188,156,.25)!important}
       .bg-soft-danger {background-color: rgba(240, 101, 72, .18)!important}

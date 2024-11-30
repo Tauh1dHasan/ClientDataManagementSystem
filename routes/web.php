@@ -94,6 +94,8 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::get('/edit/{id}', [ClientInfoController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [ClientInfoController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [ClientInfoController::class, 'destroy'])->name('delete');
+
+        Route::post('/upload-temp-document', [ClientInfoController::class, 'uploadTempDocument'])->name('upload_temp_document');
     });
 
     // Manage Client Data Routes

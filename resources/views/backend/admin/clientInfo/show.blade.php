@@ -43,8 +43,15 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Client Name:</label>
-                            <input type="text" class="form-control" value="{{$clientInfo->name}}" disabled />
+                            <label class="form-label">First Name:</label>
+                            <input type="text" class="form-control" value="{{$clientInfo->first_name}}" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Last Name:</label>
+                            <input type="text" class="form-control" value="{{$clientInfo->last_name}}" disabled />
                         </div>
                     </div>
 
