@@ -15,6 +15,12 @@
         </div>
     </div>
 
+    <style>
+        .dropzone {
+            background: #2a3740 !important;
+        }
+    </style>
+
     <div class="card">
         
            
