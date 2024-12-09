@@ -64,6 +64,13 @@
                             <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Valid Mobile Number" value="{{old('mobile')}}"/>
                         </div>
                     </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label for="birth_place" class="form-label">Birth Place:</label>
+                            <input type="text" class="form-control" id="birth_place" name="birth_place" placeholder="Enter Birth Place" value="{{old('birth_place')}}" />
+                        </div>
+                    </div>
                     
                     <div class="col-md-4 mb-2">
                         <div class="form-group">

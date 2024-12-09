@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 26, 2024 at 11:35 PM
--- Server version: 10.6.17-MariaDB
--- PHP Version: 8.3.13
+-- Host: 127.0.0.1
+-- Generation Time: Dec 09, 2024 at 01:17 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rumiveni_cdms`
+-- Database: `rumi_cdms`
 --
 
 -- --------------------------------------------------------
@@ -79,6 +79,7 @@ CREATE TABLE `client_data` (
   `client_info_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `display_name` varchar(255) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL COMMENT '1=active, 2=block',
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -90,13 +91,22 @@ CREATE TABLE `client_data` (
 -- Dumping data for table `client_data`
 --
 
-INSERT INTO `client_data` (`id`, `client_info_id`, `name`, `display_name`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(3, 1, 'clientData2024_11_23_061815_83887672.png', 'RURUR', 1, 1, 0, '2024-11-23 12:18:15', '2024-11-26 11:29:44'),
-(4, 1, 'clientData2024_11_23_061815_88759148.png', 'file display name one', 1, 1, 0, '2024-11-23 12:18:15', '2024-11-23 12:18:15'),
-(5, 1, 'clientData2024_11_23_061815_62893002.png', 'Thirt One', 1, 1, 0, '2024-11-23 12:18:15', '2024-11-26 10:57:11'),
-(6, 1, 'clientData2024_11_26_050953_41920598.pdf', 'NID card', 1, 208, 0, '2024-11-26 11:09:54', '2024-11-26 11:26:06'),
-(7, 1, 'clientData2024_11_26_051159_26852148.doc', 'clientData2024_11_26_051159_26852148.doc', 1, 208, 0, '2024-11-26 11:11:59', '2024-11-26 11:11:59'),
-(8, 2, 'clientData2024_11_26_053204_71002735.jpg', 'clientData2024_11_26_053204_71002735.jpg', 1, 208, 0, '2024-11-26 11:32:04', '2024-11-26 11:32:04');
+INSERT INTO `client_data` (`id`, `client_info_id`, `name`, `display_name`, `note`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(3, 1, 'clientData2024_11_23_061815_83887672.png', 'RURUR', NULL, 1, 1, 0, '2024-11-23 12:18:15', '2024-11-26 11:29:44'),
+(4, 1, 'clientData2024_11_23_061815_88759148.png', 'file display name one', NULL, 1, 1, 0, '2024-11-23 12:18:15', '2024-11-23 12:18:15'),
+(5, 1, 'clientData2024_11_23_061815_62893002.png', 'Thirt One', NULL, 1, 1, 0, '2024-11-23 12:18:15', '2024-11-26 10:57:11'),
+(6, 1, 'clientData2024_11_26_050953_41920598.pdf', 'NID card', NULL, 1, 208, 0, '2024-11-26 11:09:54', '2024-11-26 11:26:06'),
+(7, 1, 'clientData2024_11_26_051159_26852148.doc', 'clientData2024_11_26_051159_26852148.doc', 'asdfasdf', 1, 208, 0, '2024-11-26 11:11:59', '2024-11-28 12:37:28'),
+(8, 2, 'clientData2024_11_26_053204_71002735.jpg', 'clientData2024_11_26_053204_71002735.jpg', NULL, 1, 208, 0, '2024-11-26 11:32:04', '2024-11-26 11:32:04'),
+(9, 3, 'clientData2024_11_26_053549_79263514.pdf', 'clientData2024_11_26_053549_79263514.pdf', NULL, 1, 208, NULL, '2024-11-26 11:35:49', '2024-11-26 11:35:49'),
+(10, 3, 'clientData2024_11_26_053549_50258170.pdf', 'clientData2024_11_26_053549_50258170.pdf', NULL, 1, 208, NULL, '2024-11-26 11:35:49', '2024-11-26 11:35:49'),
+(11, 3, 'clientData2024_11_26_053549_83587069.pdf', 'clientData2024_11_26_053549_83587069.pdf', NULL, 1, 208, NULL, '2024-11-26 11:35:49', '2024-11-26 11:35:49'),
+(12, 4, 'clientData2024_11_26_072951_47898988.pdf', 'asdf', NULL, 1, 208, NULL, '2024-11-26 13:29:51', '2024-11-28 11:45:46'),
+(13, 7, 'clientData2024_11_28_062949_91846785.jpg', 'clientData2024_11_28_062949_91846785.jpg', 'DOC EXP', 1, 208, NULL, '2024-11-28 12:29:49', '2024-11-28 12:51:12'),
+(14, 8, 'clientData2024_11_29_083017_22849908.pdf', 'clientData2024_11_29_083017_22849908.pdf', NULL, 1, 208, NULL, '2024-11-29 14:30:17', '2024-11-29 14:30:17'),
+(15, 9, 'clientData2024_11_29_084619_29490399.pdf', 'clientData2024_11_29_084619_29490399.pdf', NULL, 1, 208, NULL, '2024-11-29 14:46:19', '2024-11-29 14:46:19'),
+(16, 10, 'clientData2024_11_30_084807_90057842.pdf', 'clientData2024_11_30_084807_90057842.pdf', NULL, 1, 208, NULL, '2024-11-30 02:48:07', '2024-11-30 02:48:07'),
+(17, 10, 'clientData2024_11_30_085158_53601367.pdf', 'clientData2024_11_30_085158_53601367.pdf', NULL, 1, 208, NULL, '2024-11-30 02:51:58', '2024-11-30 02:51:58');
 
 -- --------------------------------------------------------
 
@@ -106,10 +116,13 @@ INSERT INTO `client_data` (`id`, `client_info_id`, `name`, `display_name`, `stat
 
 CREATE TABLE `client_infos` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `mobile` varchar(255) DEFAULT NULL,
+  `birth_place` varchar(255) DEFAULT NULL,
+  `date_of_birth` varchar(255) DEFAULT NULL,
   `nid` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
@@ -124,9 +137,17 @@ CREATE TABLE `client_infos` (
 -- Dumping data for table `client_infos`
 --
 
-INSERT INTO `client_infos` (`id`, `name`, `photo`, `email`, `mobile`, `nid`, `address`, `notes`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Genevieve Mcdanielasdfsadf', 'clientImages2024_11_23_051611_65187600.png', 'mymefe@mailinator.com', '2351541651561', '684', 'Nobis hic ea sed ips', 'Facilis itaque tenet', 1, 1, 1, '2024-11-23 11:16:11', '2024-11-23 12:27:41'),
-(2, 'Ma Ruman', 'clientImages2024_11_26_053204_34957491.jpg', 'rumivenice@gmail.com', '3297645287', '1111', 'via castello', 'NOTE', 1, 208, 0, '2024-11-26 11:32:04', '2024-11-26 11:32:04');
+INSERT INTO `client_infos` (`id`, `first_name`, `last_name`, `photo`, `email`, `mobile`, `birth_place`, `date_of_birth`, `nid`, `address`, `notes`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Genevieve Mcdanielasdfsadf', NULL, 'clientImages2024_11_23_051611_65187600.png', 'mymefe@mailinator.com', '2351541651561', NULL, NULL, '684', 'Nobis hic ea sed ips', 'Facilis itaque tenet', 1, 1, 1, '2024-11-23 11:16:11', '2024-11-23 12:27:41'),
+(2, 'MA RUMAN', NULL, 'clientImages2024_11_28_071235_45177187.jpg', 'rumivenice@gmail.com', '3297645287', NULL, NULL, 'RMNMAX86L19Z249A', 'VIA GIUSEPPE ZAMBELLI 27, VE 30175', 'NOTE', 1, 208, 208, '2024-11-26 11:32:04', '2024-11-28 13:13:09'),
+(3, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 208, NULL, '2024-11-26 11:35:49', '2024-11-26 11:35:49'),
+(4, 'MOLLA SAGOR  11/07/1980', NULL, NULL, 'sogormolla505@gmail.com', '00393455363380', NULL, NULL, 'MLLSGR80L11Z249G', 'VIA L PASINI 20 VENEZIA MARGHERA VE 30175 - Marghera Venezia', NULL, 1, 208, NULL, '2024-11-26 13:29:51', '2024-11-26 13:29:51'),
+(5, 'RASR', NULL, 'clientImages2024_11_26_080040_36979392.jpeg', 'GJHGH@JGUG.COM', '3297645287', NULL, NULL, 'MLLSGR80L11Z249G', 'via castellTYUTUo', 'FYFYFHUGHU', 1, 208, NULL, '2024-11-26 14:00:40', '2024-11-26 14:00:40'),
+(6, 'SHAHAJAHAN HAQ', NULL, 'clientImages2024_11_28_053522_89973173.jpg', 'shahajahanhaq@gmail.com', '3276741977', NULL, '1982-01-01', NULL, 'PIAZZA DEL MUNICIPIO 19', NULL, 1, 209, NULL, '2024-11-28 11:35:22', '2024-11-28 11:35:22'),
+(7, 'KIBRIAH MIAH', NULL, NULL, 'AIMAD5794@GMAIL.COM', '3511787181', NULL, '2000-12-02', NULL, NULL, 'note O1', 1, 208, 208, '2024-11-28 12:29:49', '2024-11-28 12:50:31'),
+(8, 'SHAHIDUL BARI RAZA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Account Name: Zahidul Alam Account No. : 1507202164697001 Bank : Brac Bank Branch: Banani Routing No. : 060260435 PH.  01911557733', 1, 208, 208, '2024-11-29 14:30:17', '2024-11-29 14:32:33'),
+(9, 'MD MATIBER RIAS', NULL, NULL, NULL, '389075917', NULL, '1997-01-01', NULL, NULL, NULL, 1, 208, NULL, '2024-11-29 14:46:19', '2024-11-29 14:46:19'),
+(10, 'hhhk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 208, NULL, '2024-11-30 02:48:07', '2024-11-30 02:48:07');
 
 -- --------------------------------------------------------
 
@@ -696,15 +717,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name_bn`, `name_en`, `email`, `mobile`, `user_type`, `role_id`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'Admin', 'superadmin@gmail.com', '01234567897', 0, 1, 1, NULL, '$2y$10$DeXIGxPRkiCMvlQ1eZ2CNuQRFouzOXOI9SmFHxHyLSTwjOsDvZnOm', NULL, '2022-08-25 12:33:48', '2024-11-23 08:57:54'),
-(4, 'Employee', 'Tauhid (Employee)', 'tauhid.hasan@sebpo.com', '01677163339', 0, 3, 1, NULL, '$2a$12$ZCXkynIbX1ft3uJ4fE5jkOGEOhBHo9f5UTKug6mw3hRYmOhq1lFre', NULL, '2022-09-20 12:38:59', '2022-09-25 17:24:21'),
-(6, 'Visitor', 'Visitor', 'visitor@gmail.com', '01676743165', 4, 4, 1, NULL, '$2a$12$ZCXkynIbX1ft3uJ4fE5jkOGEOhBHo9f5UTKug6mw3hRYmOhq1lFre', NULL, '2022-09-27 10:33:06', '2022-10-10 19:30:37'),
 (20, 'Reception', 'Reception', 'reception@gmail.com', '217', 0, 5, 1, NULL, '$2a$12$ZCXkynIbX1ft3uJ4fE5jkOGEOhBHo9f5UTKug6mw3hRYmOhq1lFre', NULL, '2023-01-29 12:33:16', '2023-01-29 12:33:16'),
 (203, 'Tauhid', 'Tauhid Hasan (Visitor)', 'm.tah69@gmail.com', '01537152126', 4, 4, 1, NULL, '$2y$10$Gon9zAOLw1hi1fbWI9yp3uOgY5kVBiXrTcsEBchIz4YBf7XY9LERe', 'X2pTh76drm7PfMMaML9kvTaFEgcHfT2D4ZaPC2MYNOYzPGepTaUtHNhjhQZq', '2023-08-24 03:53:41', '2023-09-05 05:26:44'),
 (204, 'Thor Freeman', 'Thor Freeman', 'tanulup@mailinator.com', 'Quam velit de', 0, 3, 1, NULL, '$2y$10$DC3lMGLf5bAop9vX3ilqru6TbTG6p5Oj8cwnUA1UvOxGXBPSQXjO.', NULL, '2023-08-30 06:01:07', '2023-08-30 06:01:07'),
-(205, 'Ethan Alexander', 'Ethan Alexander', 'vehazu@mailinator.com', 'Animi dolores', 0, 5, 1, NULL, '$2y$10$xEW4s.YqFKHwisLP4jSruuSP/d9A8lJkLlYSuScAsqw55lA4jKu4e', NULL, '2023-08-30 06:01:43', '2023-08-30 06:01:43'),
-(206, 'Demetria Rutledge', 'Demetria Rutledge', 'boriw@mailinator.com', 'Sit accusamus', 0, 3, 1, NULL, '$2y$10$30ygtwj1EQwgIeMUVU9Woub9qwLPQZtvBdp5eJBR38gQDcsPkCNr6', NULL, '2023-08-30 06:02:00', '2023-08-30 06:02:00'),
 (207, 'Edited User', 'Edited User', 'edited@mail.com', '15987456232', 0, 3, 2, NULL, '$2y$10$/UNGMujrOXmSYH6KVxOpO.nnnbGfjAQdAHfjI4cl6hoAplQeyJLwe', NULL, '2023-08-30 06:02:36', '2024-11-23 09:06:56'),
-(208, 'Md. Ruman', 'Md. Ruman', 'Rumivenice@gmail.com', '000111222333', 0, 6, 1, NULL, '$2y$10$ZK1g9bLhRg/l0t/EzeJ45eFAkdy9EQKda2HI9/pvMV4FrKKQ0PmV6', NULL, '2024-11-23 09:06:44', '2024-11-23 09:06:44');
+(208, 'MA RUMAN', 'MA RUMAN', 'Rumivenice@gmail.com', '3291552444', 0, 6, 1, NULL, '$2y$10$ZK1g9bLhRg/l0t/EzeJ45eFAkdy9EQKda2HI9/pvMV4FrKKQ0PmV6', NULL, '2024-11-23 09:06:44', '2024-11-26 11:47:01'),
+(209, 'Rasel', 'Rasel', 'Ufficio.selina@gmail.com', 'Ufficio.selina', 0, 6, 1, NULL, '$2y$10$lMqnSdsqnVR18Y5AOadQGed2T0lHP5YQz08c5n.lEvXk0cYpoAV7C', NULL, '2024-11-28 11:18:47', '2024-11-28 11:18:47');
 
 -- --------------------------------------------------------
 
@@ -743,7 +761,8 @@ INSERT INTO `user_addresses` (`id`, `user_id`, `present_division_id`, `present_d
 (161, 205, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Et odit explicabo A', 'Hic excepturi at in', NULL, '2023-08-30 06:01:43', '2023-08-30 06:01:43'),
 (162, 206, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Itaque pariatur Ut', 'Ab praesentium dolor', NULL, '2023-08-30 06:02:00', '2023-08-30 06:02:00'),
 (163, 207, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pariatur Quis paria', 'Animi facilis ex id', NULL, '2023-08-30 06:02:36', '2023-08-30 06:02:36'),
-(164, 208, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 09:06:44', '2024-11-23 09:06:44');
+(164, 208, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N/A', 'N/A', NULL, '2024-11-23 09:06:44', '2024-11-26 11:47:01'),
+(165, 209, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-28 11:18:47', '2024-11-28 11:18:47');
 
 -- --------------------------------------------------------
 
@@ -801,7 +820,8 @@ INSERT INTO `user_infos` (`id`, `user_id`, `department_id`, `designation_id`, `a
 (189, 205, 2, 5, 'Et odit explicabo A', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-30 06:01:43', '2023-08-30 06:01:43', NULL),
 (190, 206, 2, 15, 'Itaque pariatur Ut', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-30 06:02:00', '2023-08-30 06:02:00', NULL),
 (191, 207, 2, 1, 'Pariatur Quis paria', '207image2023_08_30_125034_93252552.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-30 06:02:36', '2023-08-30 06:50:34', NULL),
-(192, 208, 2, 10, NULL, '208image2024_11_23_030644_22688509.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 09:06:44', '2024-11-23 09:06:44', NULL);
+(192, 208, 2, 10, NULL, '208image2024_11_23_030644_22688509.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 09:06:44', '2024-11-23 09:06:44', NULL),
+(193, 209, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-28 11:18:47', '2024-11-28 11:18:47', NULL);
 
 --
 -- Indexes for dumped tables
@@ -946,13 +966,13 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `client_data`
 --
 ALTER TABLE `client_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `client_infos`
 --
 ALTER TABLE `client_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -1030,19 +1050,19 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT for table `user_addresses`
 --
 ALTER TABLE `user_addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT for table `user_infos`
 --
 ALTER TABLE `user_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

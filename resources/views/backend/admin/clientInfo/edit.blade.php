@@ -61,8 +61,15 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
+                            <label for="birth_place" class="form-label">Birth Place:</label>
+                            <input type="text" class="form-control" id="birth_place" name="birth_place" value="{{$clientInfo->birth_place}}" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
                             <label for="date_of_birth" class="form-label">Date of Birth:</label>
-                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" />
+                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ $clientInfo->date_of_birth ? date('Y-m-d', strtotime($clientInfo->date_of_birth)) : '' }}" />
                         </div>
                     </div>
 

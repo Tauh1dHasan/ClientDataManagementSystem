@@ -71,6 +71,13 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
+                            <label for="birth_place" class="form-label">Birth Place:</label>
+                            <input type="text" class="form-control" id="birth_place" name="birth_place" value="{{$clientInfo->birth_place ?? 'N/A'}}" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
                             <label class="form-label">Date of Birth:</label>
                             <input type="text" class="form-control" value="{{ date('d/m/Y', strtotime($clientInfo->date_of_birth)) }}" disabled />
 
@@ -137,7 +144,9 @@
                                 
                                     @if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif']))
                                         <!-- Display Image Preview -->
-                                        <img src="{{ asset('storage/clientData/' . $clientData->name) }}" alt="Image Preview" class="img-thumbnail" style="width: 100px; height: auto;">
+                                        <a href="{{ asset('storage/clientData/' . $clientData->name) }}" target="_blank">
+                                            <img src="{{ asset('storage/clientData/' . $clientData->name) }}" alt="Image Preview" class="img-thumbnail" style="width: 100px; height: auto;">
+                                        </a>
                                     @elseif ($fileExtension === 'pdf')
                                         <!-- Display PDF Preview -->
                                         <a href="{{ asset('storage/clientData/' . $clientData->name) }}" target="_blank">
