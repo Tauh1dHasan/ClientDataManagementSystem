@@ -100,6 +100,18 @@
                 </div>
             @endcan
 
+            {{-- Application Manage module --}}
+            @can('manage_application_type')
+                <div class="menu-item {{ session('lsbm') == 'manage_application_type' ? 'active' : '' }}">
+                    <a href="{{ route('admin.applicationType.index') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-gear"></i>
+                        </span>
+                        <span class="menu-text">Manage Application Types</span>
+                    </a>
+                </div>
+            @endcan
+
 
             @can('manage_office')
                 <div class="menu-item has-sub {{ session('lsbm') == 'manage_office' ? 'expand' : '' }}">

@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\Admin\{
     NotificationController,
     ClientInfoController,
     ClientDataController,
+    ApplicationTypeController,
 };
 
 /*
@@ -96,6 +97,12 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::get('/delete/{id}', [ClientInfoController::class, 'destroy'])->name('delete');
 
         Route::post('/upload-temp-document', [ClientInfoController::class, 'uploadTempDocument'])->name('upload_temp_document');
+    });
+
+    // Mnage application type
+    Route::group(['prefix' => '/application-type', 'as' => 'applicationType.'], function() {
+        Route::get('/', [ApplicationTypeController::class, 'index'])->name('index');
+        Route::get('/create', [ApplicationTypeController::class, 'create'])->name('create');
     });
 
     // Manage Client Data Routes
