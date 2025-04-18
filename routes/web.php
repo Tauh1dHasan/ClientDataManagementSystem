@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\Admin\{
     ClientInfoController,
     ClientDataController,
     ApplicationTypeController,
+    ClientTaskController,
 };
 
 /*
@@ -112,6 +113,13 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::get('/delete/{id}', [ClientDataController::class, 'destroy'])->name('delete');
         Route::post('/rename', [ClientDataController::class, 'rename'])->name('rename');
         Route::post('/note', [ClientDataController::class, 'note'])->name('note');
+    });
+
+    // Manage Client Task Routes
+    Route::group(['prefix' => '/client-task', 'as' => 'clientTask.'], function() {
+        Route::post('/store', [ClientTaskController::class, 'store'])->name('store');
+        Route::post('/update-status/{Id}', [ClientTaskController::class, 'updateStatus'])->name('updateStatus');
+        Route::get('/get-applications/{TypeId}', [ClientTaskController::class, 'getApplications'])->name('getApplications');
     });
 
 

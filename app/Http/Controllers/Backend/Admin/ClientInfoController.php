@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\ClientInfo;
 use App\Models\ClientData;
+use App\Models\ClientTask;
+use App\Models\ApplicationType;
+use App\Models\Application;
 
 class ClientInfoController extends Controller
 {
@@ -154,8 +157,10 @@ class ClientInfoController extends Controller
 
         $clientInfo = ClientInfo::where('id', $id)->first();
         $clientDatas = ClientData::where('client_info_id', $id)->latest()->get();
+        $clientTasks = ClientTask::with('application.applicationType')->where('client_info_id', $id)->latest()->get();
+        $applicationTypes = ApplicationType::all();
 
-        return view('backend.admin.clientInfo.show', compact('clientInfo', 'clientDatas'));
+        return view('backend.admin.clientInfo.show', compact('clientInfo', 'clientDatas', 'clientTasks', 'applicationTypes'));
     }
 
     /**
