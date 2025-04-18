@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('application_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->integer('created_by')->nullabe();
-            $table->integer('updated_by')->nullabe();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

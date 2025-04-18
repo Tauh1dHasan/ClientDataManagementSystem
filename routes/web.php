@@ -102,7 +102,8 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
     // Mnage application type
     Route::group(['prefix' => '/application-type', 'as' => 'applicationType.'], function() {
         Route::get('/', [ApplicationTypeController::class, 'index'])->name('index');
-        Route::get('/create', [ApplicationTypeController::class, 'create'])->name('create');
+        Route::post('/store', [ApplicationTypeController::class, 'store'])->name('store');
+        Route::post('/applicationStore', [ApplicationTypeController::class, 'applicationStore'])->name('applicationStore');
     });
 
     // Manage Client Data Routes

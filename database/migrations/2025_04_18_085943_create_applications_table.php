@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('application_type_id');
             $table->string('name');
-            $table->integer('created_by')->nullabe();
-            $table->integer('updated_by')->nullabe();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }
