@@ -117,6 +117,7 @@
                 <button data-toggle="modal" data-target="#addDocuments" class="btn btn-outline-theme mb-3">
                     <i class="fa fa-plus-circle fa-fw me-1"></i> Add Documents
                 </button>
+                <a href="{{ route('admin.clientInfo.generateDelega', $clientInfo->id) }}" class="btn btn-outline-theme mb-3 ms-2"><i class="fa fa-plus-circle fa-fw me-1"></i> Generate DELEGA</a>
                 <table class="table table-separate table-head-custom table-checkable dataTable">
                     <thead class="table-dark">
                         <tr>

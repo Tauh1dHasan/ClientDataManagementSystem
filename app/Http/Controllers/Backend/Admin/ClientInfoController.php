@@ -229,4 +229,14 @@ class ClientInfoController extends Controller
         $clientInfo->delete();
         return redirect()->back()->with('success', 'Client Removed successfully and file removed from storage.');
     }
+
+    // Manage DELEGA generation
+    public function generateDelega(string $id)
+    {
+        menuSubmenu('manage_client_info', 'client_list');
+
+        $clientInfo = ClientInfo::where('id', $id)->first();
+
+        return view('backend.admin.clientInfo.delega', compact('clientInfo'));
+    }
 }

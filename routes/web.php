@@ -97,6 +97,9 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::post('/update/{id}', [ClientInfoController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [ClientInfoController::class, 'destroy'])->name('delete');
 
+        // Generate DELEGA routes
+        Route::get('/generate-delega/{id}', [ClientInfoController::class, 'generateDelega'])->name('generateDelega');
+
         Route::post('/upload-temp-document', [ClientInfoController::class, 'uploadTempDocument'])->name('upload_temp_document');
     });
 
