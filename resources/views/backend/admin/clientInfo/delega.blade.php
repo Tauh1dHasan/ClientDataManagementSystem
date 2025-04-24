@@ -187,12 +187,16 @@
 
                     <div style="margin-top: 100px;">
                         <div style="text-align: right; font-weight: bold; margin-right: 10%;">
-                            Il delegante
+                            <span style="border-top: 1px solid black; padding-top: 5px">Il delegante</span>
                         </div>
                         
                         <div style="display: flex; justify-content: space-between; margin-top: 100px;">
-                            <div style="margin-left: 25%">(luogo e data)</div>
-                            <div style="margin-right: 25%">(luogo e data)</div>
+                            <div style="margin-left: 25%">
+                                <span style="border-top: 1px solid black; padding-top: 5px">(luogo e data)</span>
+                            </div>
+                            <div style="margin-right: 25%">
+                                <span style="border-top: 1px solid black; padding-top: 5px">(luogo e data)</span>
+                            </div>
                         </div>
                         
                     </div>
@@ -245,21 +249,22 @@
                 padding: 0;
                 background-color: #fff;
                 font-family: 'Times New Roman', serif !important;
-                font-size: 1.1em !important;
+                /* font-size: 1.1em !important; */
                 color: #000 !important;
                 font-weight: bold;
             }
 
             #printableArea {
-                padding: 20mm;
+                max-width: 100%;
+                width: 180mm; /* slightly less than A4 width after margins */
+                margin: 0 auto;
             }
-        }
 
-        @media print {
             .text-muted, .text-secondary, .text-body-secondary {
                 color: #000 !important;
             }
         }
+
         </style>
     @endpush
     
