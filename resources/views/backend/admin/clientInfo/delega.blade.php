@@ -229,6 +229,7 @@
                 color: #000 !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                background: #fff !important;
             }
 
             input::placeholder {
