@@ -89,6 +89,27 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
+                            <label for="post_code" class="form-label">Post Code / CAP:</label>
+                            <input type="text" class="form-control" id="post_code" name="post_code" placeholder="Enter your current post_code" value="{{$clientInfo->post_code}}" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label for="city" class="form-label">City / Citta:</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="Enter your current city" value="{{$clientInfo->city}}" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label for="province" class="form-label">Province / Prov:</label>
+                            <input type="text" class="form-control" id="province" name="province" placeholder="Enter your current province" value="{{$clientInfo->province}}" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
                             <label for="notes" class="form-label">Notes:</label>
                             <input type="text" class="form-control" id="notes" name="notes" placeholder="Enter your current notes" value="{{$clientInfo->notes}}" />
                         </div>
