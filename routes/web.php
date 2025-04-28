@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\Admin\{
     ClientInfoController,
     ClientDataController,
     ApplicationTypeController,
+    ClientTaskController,
 };
 
 /*
@@ -96,13 +97,17 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::post('/update/{id}', [ClientInfoController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [ClientInfoController::class, 'destroy'])->name('delete');
 
+        // Generate DELEGA routes
+        Route::get('/generate-delega/{id}', [ClientInfoController::class, 'generateDelega'])->name('generateDelega');
+
         Route::post('/upload-temp-document', [ClientInfoController::class, 'uploadTempDocument'])->name('upload_temp_document');
     });
 
     // Mnage application type
     Route::group(['prefix' => '/application-type', 'as' => 'applicationType.'], function() {
         Route::get('/', [ApplicationTypeController::class, 'index'])->name('index');
-        Route::get('/create', [ApplicationTypeController::class, 'create'])->name('create');
+        Route::post('/store', [ApplicationTypeController::class, 'store'])->name('store');
+        Route::post('/applicationStore', [ApplicationTypeController::class, 'applicationStore'])->name('applicationStore');
     });
 
     // Manage Client Data Routes
@@ -111,6 +116,13 @@ Route::group(['middleware' => ['AuthGates'], 'prefix' => '/admin', 'as' => 'admi
         Route::get('/delete/{id}', [ClientDataController::class, 'destroy'])->name('delete');
         Route::post('/rename', [ClientDataController::class, 'rename'])->name('rename');
         Route::post('/note', [ClientDataController::class, 'note'])->name('note');
+    });
+
+    // Manage Client Task Routes
+    Route::group(['prefix' => '/client-task', 'as' => 'clientTask.'], function() {
+        Route::post('/store', [ClientTaskController::class, 'store'])->name('store');
+        Route::post('/update-status/{Id}', [ClientTaskController::class, 'updateStatus'])->name('updateStatus');
+        Route::get('/get-applications/{TypeId}', [ClientTaskController::class, 'getApplications'])->name('getApplications');
     });
 
 

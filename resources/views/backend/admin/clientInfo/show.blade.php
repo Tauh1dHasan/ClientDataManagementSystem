@@ -112,10 +112,12 @@
 
             {{-- client data table --}}
             <div class="table-responsive mt-3">
-                <h2>Client Documents</h2>
+                <h2>Client Documents</h2> 
+                <span class="float-end"><input type="checkbox" value="1" id="clientDocumentTableTrigger" checked> Show</span>
                 <button data-toggle="modal" data-target="#addDocuments" class="btn btn-outline-theme mb-3">
                     <i class="fa fa-plus-circle fa-fw me-1"></i> Add Documents
                 </button>
+                <a href="{{ route('admin.clientInfo.generateDelega', $clientInfo->id) }}" class="btn btn-outline-theme mb-3 ms-2"><i class="fa fa-plus-circle fa-fw me-1"></i> Generate DELEGA</a>
                 <table class="table table-separate table-head-custom table-checkable dataTable">
                     <thead class="table-dark">
                         <tr>
@@ -127,7 +129,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="clientDocumentTableBody">
                         @if ($clientDatas->count() > 0)
                             @php
                                 // $i = (($clientDatas->currentPage() - 1) * $clientDatas->perPage() + 1);
@@ -272,6 +274,75 @@
                 </table>
             </div>
 
+
+
+            {{-- client task table --}}
+            <div class="table-responsive mt-3">
+                <h2>Client Task</h2> 
+                <span class="float-end"><input type="checkbox" value="1" id="clientTaskTableTrigger" checked> Show</span>
+                <button data-toggle="modal" data-target="#addTask" class="btn btn-outline-theme mb-3">
+                    <i class="fa fa-plus-circle fa-fw me-1"></i> Add task
+                </button>
+                <table class="table table-separate table-head-custom table-checkable dataTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-center">SN</th>
+                            <th>Task</th>
+                            <th>Start Date</th>
+                            <th>Estimated End Date</th>
+                            <th>Actual End Date</th>
+                            <th>Note</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientTaskTableBody">
+                        @if ($clientTasks->count() > 0)
+                            @php
+                                // $i = (($clientDatas->currentPage() - 1) * $clientDatas->perPage() + 1);
+                                $i = 1;
+                            @endphp
+                            @foreach ($clientTasks as $task)
+                            <tr>
+                                <td class="text-center">{{$i}}</td>
+
+                                <td>
+                                    {{ $task->application->name ?? 'N/A' }} <br>
+                                    <small class="text-muted">({{ $task->application->applicationType->name ?? 'N/A' }})</small>
+                                </td>
+                                <td>{{date('d/m/Y', strtotime($task->start_date))}}</td>
+                                <td>{{date('d/m/Y', strtotime($task->estimated_end_date))}}</td>
+                                <td>
+                                    @if ($task->actual_end_date == null || $task->status == 1)
+                                        <span class="text-danger">Not Completed</span>
+                                    @else
+                                        {{date('d/m/Y', strtotime($task->actual_end_date))}}
+                                    @endif
+                                </td>
+                                <td>{{ $task->note }}</td>
+                                <td>
+                                    <form action="{{ route('admin.clientTask.updateStatus', $task->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                                class="btn btn-sm {{ $task->status == 2 ? 'btn-success' : 'btn-warning' }}"
+                                                title="Click to mark as {{ $task->status == 2 ? 'In Progress' : 'Complete' }}">
+                                            {{ $task->status == 2 ? 'Complete' : 'In Progress' }}
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @php
+                                $i++;
+                            @endphp
+
+                            @endforeach
+                        @else
+                            <tr class="odd"><td valign="top" colspan="100%" class="dataTables_empty text-center">No matching records found</td></tr>
+                        @endif
+                        
+                    </tbody>
+                </table>
+            </div>
+
         </div>
             
         <div class="card-arrow">
@@ -315,6 +386,63 @@
             </div>
         </div>
 
+
+
+        {{-- Add new task modal --}}
+
+        <div id="addTask" class="modal fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header py-5">
+                        <h5 class="modal-title">Add Task
+                            <span class="d-block text-muted font-size-sm"></span>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="fas fa-close"></i>
+                        </button>
+                    </div>
+                    <form class="form" action="{{ route('admin.clientTask.store') }}" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="client_info_id" value="{{$clientInfo->id}}">
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="applicationTypeId">Select Application Type</label>
+                                    <select class="form-control" id="applicationTypeId" name="applicationTypeId" required>
+                                        <option value="" style="color:black;">--Select Application Type--</option>
+                                        @foreach($applicationTypes as $type)
+                                            <option value="{{ $type->id }}" style="color:black;">{{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="applicationId">Select Application</label>
+                                    <select class="form-control" id="applicationId" name="applicationId" required>
+                                        <option value="" style="color:black;">--Select Application--</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="estimated_end_date">Estimated End Date</label>
+                                    <input class="form-control" type="date" id="estimated_end_date" name="estimated_end_date" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="note">Write Note </label>
+                                    <textarea class="form-control" name="note" cols="10" rows="5" placeholder="Write Down Notes about the Client Task"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         
 
     @endsection
@@ -338,6 +466,70 @@
                     Swal.fire('Canceled', '', 'error')
                 }
             })
+        });
+
+        $(document).ready(function () {
+            // Initial check on load
+            toggleClientDocumentTable();
+
+            $('#clientDocumentTableTrigger').on('change', function () {
+                toggleClientDocumentTable();
+            });
+
+            function toggleClientDocumentTable() {
+                if ($('#clientDocumentTableTrigger').is(':checked')) {
+                    $('#clientDocumentTableBody').show();
+                } else {
+                    $('#clientDocumentTableBody').hide();
+                }
+            }
+
+
+            // Initial check on load
+            toggleClientTaskTable();
+
+            $('#clientTaskTableTrigger').on('change', function () {
+                toggleClientTaskTable();
+            });
+
+            function toggleClientTaskTable() {
+                if ($('#clientTaskTableTrigger').is(':checked')) {
+                    $('#clientTaskTableBody').show();
+                } else {
+                    $('#clientTaskTableBody').hide();
+                }
+            }
+
+            // Fetch applications based on selected application type
+
+            $('#applicationTypeId').change(function() {
+                let typeId = $(this).val();
+                let $appSelect = $('#applicationId');
+
+                // Reset Application dropdown
+                $appSelect.empty().append('<option value="">--Loading Applications--</option>');
+
+                if (typeId) {
+                    $.ajax({
+                        url: "{{ url('/admin/client-task/get-applications') }}/" + typeId,
+                        type: 'GET',
+                        success: function(data) {
+                            $appSelect.empty().append('<option style="color:black;" value="">--Select Application--</option>');
+                            $.each(data, function(key, application) {
+                                $appSelect.append('<option style="color:black;" value="'+ application.id +'">'+ application.name +'</option>');
+                            });
+                        },
+                        error: function() {
+                            $appSelect.empty().append('<option value="">--No Application Found--</option>');
+                        }
+                    });
+                } else {
+                    $appSelect.empty().append('<option value="">--Select Application--</option>');
+                }
+            });
+
+
+
         });
 
     </script>

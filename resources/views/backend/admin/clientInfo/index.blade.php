@@ -80,12 +80,20 @@
                                     <td class="text-center">{{$i}}</td>
                                     <td class="text-center"> 
                                         @if ($clientInfo->photo)
-                                            <img src="{{ asset('storage/clientImages/' . $clientInfo->photo) }}" alt="Photo" style="max-width: 80px;">
+                                            <a href="{{route('admin.clientInfo.show', $clientInfo->id)}}" class="btn btn-outline-light" title="view">
+                                                <img src="{{ asset('storage/clientImages/' . $clientInfo->photo) }}" alt="Photo" style="max-width: 80px;">
+                                            </a>
                                         @else
-                                            <img src="{{ asset('blank.png') }}" alt="Photo" style="max-width: 80px;"> 
+                                            <a href="{{route('admin.clientInfo.show', $clientInfo->id)}}" class="btn btn-outline-light" title="view">
+                                                <img src="{{ asset('blank.png') }}" alt="Photo" style="max-width: 80px;"> 
+                                            </a>
                                         @endif
                                     </td>
-                                    <td>{{ucfirst($clientInfo->first_name)}} {{ucfirst($clientInfo->last_name)}}</td>
+                                    <td>
+                                        <a href="{{route('admin.clientInfo.show', $clientInfo->id)}}" class="btn btn-outline-light" title="view">
+                                            {{ucfirst($clientInfo->first_name)}} {{ucfirst($clientInfo->last_name)}}
+                                        </a>
+                                    </td>
                                     <td align="middle">{{$clientInfo->mobile ?? 'N/A' }}</td>
                                     <td>{{$clientInfo->email ?? 'N/A' }}</td>
                                     <td class="text-center">{{$clientInfo->nid ?? 'N/A'}}</td>
