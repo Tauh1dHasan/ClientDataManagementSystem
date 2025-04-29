@@ -93,7 +93,7 @@ class ClientInfoController extends Controller
         $clientInfo->nid = $request->nid;
         $clientInfo->address = $request->address;
         $clientInfo->post_code = $request->post_code;
-        $clientInfo->ciry = $request->ciry;
+        $clientInfo->city = $request->city;
         $clientInfo->province = $request->province;
         $clientInfo->notes = $request->notes;
         $clientInfo->status = 1;
