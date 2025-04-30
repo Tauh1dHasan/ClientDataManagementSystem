@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('date_of_birth')->nullabe();
             $table->string('nid')->nullabe();
             $table->string('address')->nullabe();
+            $table->string('post_code')->nullabe();
+            $table->string('city')->nullabe();
+            $table->string('province')->nullabe();
             $table->string('notes')->nullabe();
             $table->integer('status')->nullabe()->comment('1=active, 2=block');
             $table->integer('created_by')->nullabe();

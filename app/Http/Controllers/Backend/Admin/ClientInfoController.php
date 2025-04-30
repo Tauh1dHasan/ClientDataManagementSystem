@@ -76,6 +76,9 @@ class ClientInfoController extends Controller
             'date_of_birth' => 'nullable|date',
             'nid' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
+            'post_code' => 'nullable|string|max:255',
+            'ciry' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
             'notes' => 'nullable|string|max:255',
         ]);
 
@@ -89,6 +92,9 @@ class ClientInfoController extends Controller
         $clientInfo->date_of_birth = $request->date_of_birth;
         $clientInfo->nid = $request->nid;
         $clientInfo->address = $request->address;
+        $clientInfo->post_code = $request->post_code;
+        $clientInfo->city = $request->city;
+        $clientInfo->province = $request->province;
         $clientInfo->notes = $request->notes;
         $clientInfo->status = 1;
         $clientInfo->created_by = $user->id;
@@ -192,6 +198,9 @@ class ClientInfoController extends Controller
         }
         $clientInfo->nid = $request->nid;
         $clientInfo->address = $request->address;
+        $clientInfo->post_code = $request->post_code;
+        $clientInfo->city = $request->city;
+        $clientInfo->province = $request->province;
         $clientInfo->notes = $request->notes;
         $clientInfo->status = 1;
         $clientInfo->updated_by = $user->id;

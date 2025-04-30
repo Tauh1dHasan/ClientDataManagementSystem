@@ -100,6 +100,27 @@
 
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
+                            <label class="form-label">Post Code / CAP:</label>
+                            <input type="text" class="form-control" value="{{$clientInfo->post_code ?? 'N/A'}}" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">City / citta:</label>
+                            <input type="text" class="form-control" value="{{$clientInfo->city ?? 'N/A'}}" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Province / Prov:</label>
+                            <input type="text" class="form-control" value="{{$clientInfo->province ?? 'N/A'}}" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
                             <label class="form-label">Notes:</label>
                             <input type="text" class="form-control" value="{{$clientInfo->notes ?? 'N/A'}}" disabled />
                         </div>
