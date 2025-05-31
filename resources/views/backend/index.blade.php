@@ -61,6 +61,35 @@
                     </a>
                 </div>
             </div>
+
+            <div class="col-xl-3 col-lg-6">
+                <div class="card mb-3">
+                    <a href="{{route('admin.clientTask.pendingTask')}}" style="text-decoration: none">
+                        <div class="card-body">
+                            <div class="d-flex fw-bold mb-3">
+                                <span class="flex-grow-1 db-card-title">Pending Client Task</span>
+                            </div>
+                            <div class="row align-items-center mb-2">
+                                <div class="col-7">
+                                    <h3 class="mb-0">{{ $pendingClientTaskCount }}</h3>
+                                </div>
+                                <div class="col-5">
+                                    <i class="fas fa-users fa-4x fa-fw me-1 text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="text-inverse text-opacity-50 text-truncate">
+                                Pending Client Task Count<br>
+                            </div>
+                        </div>
+                        <div class="card-arrow">
+                            <div class="card-arrow-top-left"></div>
+                            <div class="card-arrow-top-right"></div>
+                            <div class="card-arrow-bottom-left"></div>
+                            <div class="card-arrow-bottom-right"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
             
             @can('total_visitor_count')
                 <div class="col-xl-3 col-lg-6">

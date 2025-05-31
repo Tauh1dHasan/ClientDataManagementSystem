@@ -17,6 +17,7 @@ use App\Models\UserAddress;
 use App\Models\Appointment;
 use App\Models\ClientInfo;
 use App\Models\ClientData;
+use App\Models\ClientTask;
 
 class IndexController extends Controller
 {
@@ -36,8 +37,10 @@ class IndexController extends Controller
         // Card counts
         $visitor_count = User::where('role_id', 4)->where('status', 1)->count();
         $host_count = User::where('role_id', 3)->where('status', 1)->count();
+
         $clientInfoCount = ClientInfo::count();
         $clientDataCount = ClientData::count();
+        $pendingClientTaskCount = ClientTask::where('status', 1)->count();
 
         if($user->role_id == 3){
             $total_appointment_count = Appointment::where('host_user_id', $user->id)->count();
@@ -54,7 +57,7 @@ class IndexController extends Controller
         $statusWiseDatas = Appointment::groupBy('appointment_status')->get();
         $monthlyDatas = Appointment::select(DB::raw('DATE_FORMAT(appointment_date, "%b") as month, COUNT(*) as count'))->groupBy('month')->orderBy(DB::raw('MONTH(appointment_date)'), 'asc')->get();
 
-        return view('backend.index', compact('visitor_count', 'host_count', 'total_appointment_count', 'today_appointment_count', 'date', 'statusWiseDatas', 'monthlyDatas', 'clientInfoCount', 'clientDataCount'));
+        return view('backend.index', compact('visitor_count', 'host_count', 'total_appointment_count', 'today_appointment_count', 'date', 'statusWiseDatas', 'monthlyDatas', 'clientInfoCount', 'clientDataCount', 'pendingClientTaskCount'));
 
     }
 

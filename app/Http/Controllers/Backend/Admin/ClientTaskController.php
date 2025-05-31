@@ -23,7 +23,13 @@ class ClientTaskController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->back();
+    }
+
+    public function pendingTask()
+    {
+        $pendingTasks = ClientTask::where('status', 1)->get();
+        return view('backend.admin.clientTask.pendingTask', compact('pendingTasks'));
     }
 
     public function getApplications($typeId)

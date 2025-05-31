@@ -18,5 +18,10 @@ class ClientTask extends Model
     {
         return $this->belongsTo(Application::class);
     }
+
+    public function clientInfo()
+    {
+        return $this->belongsTo(ClientInfo::class);
+    }
     
 }
