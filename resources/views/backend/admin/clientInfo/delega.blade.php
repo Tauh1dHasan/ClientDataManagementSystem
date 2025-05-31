@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="{{$clientInfo->birth_place ?? 'N/A'}}" disabled />
+                            <input type="text" class="form-control" value="{{$clientInfo->birth_place ?? ''}}" disabled />
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="{{$clientInfo->address ?? 'N/A'}}" disabled />
+                            <input type="text" class="form-control" value="{{$clientInfo->address ?? ''}}" disabled />
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@
                     </div>
                     <div class="col-md-3 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="{{$clientInfo->post_code ?? 'N/A'}}" disabled />
+                            <input type="text" class="form-control" value="{{$clientInfo->post_code ?? ''}}" disabled />
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="{{$clientInfo->city ?? 'N/A'}}" disabled />
+                            <input type="text" class="form-control" value="{{$clientInfo->city ?? ''}}" disabled />
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-md-3 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="{{$clientInfo->province ?? 'N/A'}}" disabled />
+                            <input type="text" class="form-control" value="{{$clientInfo->province ?? ''}}" disabled />
                         </div>
                     </div>
 
@@ -114,7 +114,7 @@
                     </div>
                     <div class="col-md-10 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter valid data" name="org_name" id="org_name" value="{{ old('org_name') }}" requried/>
+                            <input type="text" class="form-control" placeholder="" name="org_name" id="org_name" value="{{ old('org_name') }}" requried/>
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
                     </div>
                     <div class="col-md-10 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter valid data" name="delega_piva" id="delega_piva" value="{{ old('delega_piva') }}" requried/>
+                            <input type="text" class="form-control" placeholder="" name="delega_piva" id="delega_piva" value="{{ old('delega_piva') }}" requried/>
                         </div>
                     </div>
 
@@ -136,7 +136,7 @@
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter valid data" name="delega_residente" id="delega_residente" value="{{ old('delega_residente') }}" required />
+                            <input type="text" class="form-control" placeholder="" name="delega_residente" id="delega_residente" value="{{ old('delega_residente') }}" required />
                         </div>
                     </div>
 
@@ -147,7 +147,7 @@
                     </div>
                     <div class="col-md-3 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter valid data" name="delega_post_code" id="delega_post_code" value="{{ old('delega_post_code') }}" required />
+                            <input type="text" class="form-control" placeholder="" name="delega_post_code" id="delega_post_code" value="{{ old('delega_post_code') }}" required />
                         </div>
                     </div>
 
@@ -158,7 +158,7 @@
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="delega_city" id="delega_city" value="{{ old('delega_city') }}" required />
+                            <input type="text" class="form-control" placeholder="" id="delega_city" value="{{ old('delega_city') }}" required />
                         </div>
                     </div>
 
@@ -169,7 +169,7 @@
                     </div>
                     <div class="col-md-3 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter valid data" name="delega_province" id="delega_province" value="{{ old('delega_province') }}" required />
+                            <input type="text" class="form-control" placeholder="" name="delega_province" id="delega_province" value="{{ old('delega_province') }}" required />
                         </div>
                     </div>
 
@@ -180,7 +180,7 @@
                     </div>
                     <div class="col-md-12 mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="delega_aggrement" placeholder="Enter valid data" id="delega_aggrement" value="{{ old('delega_aggrement') }}"/>
+                            <input type="text" class="form-control" name="delega_aggrement" placeholder="" id="delega_aggrement" value="{{ old('delega_aggrement') }}"/>
                         </div>
                     </div>
 
